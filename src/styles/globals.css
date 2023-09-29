@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply w-full bg-white text-neutral-950 relative h-full font-roboto;
+}
+
+a,
+button {
+  @apply transition-all duration-[0.35s] ease-in-out;
+}
