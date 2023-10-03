@@ -1,12 +1,8 @@
-import "@/styles/globals.css";
+import "@/styles/app.css";
 import { ComponentLayout } from "@/modules/common/components/layouts";
-import type { AppPropsWithLayout } from "./pages";
+import type { AppProps } from "@/types";
 
-export default function Ecommerce({
-  Component,
-  pageProps,
-  router,
-}: AppPropsWithLayout) {
+export default function Ecommerce({ Component, pageProps, router }: AppProps) {
   const getLayout = Component.getLayout || ((page) => page);
   return getLayout(
     <ComponentLayout route={router.route}>

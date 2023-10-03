@@ -1,3 +1,4 @@
+import type { Component } from "@/types";
 import type { Metadata } from "next";
 import Head from "next/head";
 
@@ -6,10 +7,7 @@ type PageLayoutProps = {
   metadata?: Metadata;
 };
 
-const PageLayout: React.ComponentType<PageLayoutProps> = ({
-  children,
-  metadata,
-}) => {
+const PageLayout: Component<PageLayoutProps> = ({ children, metadata }) => {
   return (
     <>
       <Head>

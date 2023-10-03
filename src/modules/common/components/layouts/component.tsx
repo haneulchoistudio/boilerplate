@@ -1,3 +1,4 @@
+import { Component } from "@/types";
 import type { NextRouter } from "next/router";
 
 type ComponentLayoutProps = {
@@ -5,7 +6,7 @@ type ComponentLayoutProps = {
   children: React.ReactNode;
 };
 
-const ComponentLayout: React.ComponentType<ComponentLayoutProps> = ({
+const ComponentLayout: Component<ComponentLayoutProps> = ({
   route,
   children,
 }) => {

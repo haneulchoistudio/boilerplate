@@ -1,12 +1,12 @@
-import { PageLayout } from "@/modules/common/components/layouts";
-import type { NextPageWithLayout } from "./pages";
+import { PageLayout } from "@/modules/common";
+import type { AppPage } from "@/types";
 
-const Homepage: NextPageWithLayout = () => {
-  return <PageLayout>Homepage</PageLayout>;
+const Homepage: AppPage = () => {
+  return (
+    <PageLayout>
+      <></>
+    </PageLayout>
+  );
 };
 
-Homepage.getLayout = (page) => {
-  return page;
-};
-
-export default Homepage;
+Homepage.getLayout = (page) => page;
