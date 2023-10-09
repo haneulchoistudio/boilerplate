@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply w-full bg-white text-neutral-950 relative h-full font-roboto;
+  @apply w-full relative h-full font-roboto;
 }
 
 a,

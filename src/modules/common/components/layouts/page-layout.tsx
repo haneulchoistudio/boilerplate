@@ -1,4 +1,4 @@
-import type { Component } from "@/types";
+import type { Next } from "@/types";
 import type { Metadata } from "next";
 import Head from "next/head";
 
@@ -7,7 +7,12 @@ type PageLayoutProps = {
   metadata?: Metadata;
 };
 
-const PageLayout: Component<PageLayoutProps> = ({ children, metadata }) => {
+const PageLayout: Next.Component<PageLayoutProps> = ({
+  children,
+  metadata,
+}) => {
+  const id = "__next__page__layout";
+
   return (
     <>
       <Head>
@@ -21,7 +26,7 @@ const PageLayout: Component<PageLayoutProps> = ({ children, metadata }) => {
           </>
         )}
       </Head>
-      <div id="__PAGE_LAYOUT">{children}</div>
+      <div id={id}>{children}</div>
     </>
   );
 };
