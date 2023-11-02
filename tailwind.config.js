@@ -1,13 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/modules/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: ["./pages/**/*.{js,ts,jsx,tsx,mdx}", "./c/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {
       maxWidth: {
-        cutoff: "1480px",
+        cutoff: "1280px",
       },
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],
