@@ -1,6 +1,5 @@
-import "@/m/s/index.css";
-import { SessionProvider } from "next-auth/react";
-import type { AppPropsWithLayout } from "@/m/t/nextjs";
+import "@/styles/index.css";
+import type { AppPropsWithLayout } from "@/types/next";
 
 export default function App({
   Component,
@@ -8,10 +7,5 @@ export default function App({
   router,
 }: AppPropsWithLayout) {
   const getLayout = Component.getLayout || ((page) => page);
-
-  return (
-    <SessionProvider session={pageProps.session}>
-      {getLayout(<Component {...pageProps} />)}
-    </SessionProvider>
-  );
+  return getLayout(<Component {...pageProps} />);
 }
