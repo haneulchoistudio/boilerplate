@@ -4,52 +4,37 @@ import type {
   Redirect,
 } from "next";
 
-export async function withMiddleware<T extends object = {}>(
+async function withMiddleware<T extends object = {}>(
   ctx: GetServerSidePropsContext,
-  getServerSideProps: GetServerSideProps<T>
+  result: GetServerSideProps<T>
 ) {
-  __withMiddleware_activate();
-  const gssp = await getServerSideProps(ctx);
-  __withMiddleware_print({
-    host: ctx.req.headers.host || "",
-    url: ctx.resolvedUrl,
-  });
-  if (Object.keys(gssp).includes("redirect")) {
-    let shallowCopyOfGsspWithRedirect = gssp as unknown as {
-      redirect: Redirect;
-    };
-    __withMiddleware_redirect(
-      shallowCopyOfGsspWithRedirect.redirect.destination
-    );
+  console.log("\n");
+  console.log("> Activated.");
+  console.log(`\tHost > '${ctx.req.headers.host as string}'`);
+  console.log(`\tUrl > '${ctx.resolvedUrl as string}'`);
+  const res = await result(ctx);
+  if (Object.keys(res).includes("redirect")) {
+    let _res = structuredClone(res) as { redirect: Redirect };
+    console.log(`> Redirected to ${_res.redirect.destination}`);
   } else {
-    __withMiddleware_stay();
+    console.log("> Stay here");
   }
-
-  __withMiddleware_complete();
-  return gssp;
-}
-
-function __withMiddleware_activate() {
+  console.log("> Completed.");
   console.log("\n");
-  console.log("> [GSSP] activated.");
+  return res;
 }
-function __withMiddleware_complete() {
-  console.log("> [GSSP] completed.");
-  console.log("\n");
+
+async function gsspHome(ctx: GetServerSidePropsContext) {
+  return { props: {} };
 }
-function __withMiddleware_redirect(to: string) {
-  console.log(`\t➡️ It will redirect to '${to}'.`);
-}
-function __withMiddleware_stay() {
-  console.log(`\t➡️ It will stay.`);
-}
-type PrintField = {
-  host: string;
-  url: string;
+
+const pages = {
+  "/": async (ctx: GetServerSidePropsContext) =>
+    await withMiddleware(ctx, gsspHome),
 };
-function __withMiddleware_print(printField: PrintField) {
-  console.log(`\t➡️ It was requested from '${printField.host}'.`);
-  console.log(
-    `\t➡️ It was resolved with the url '${printField.url as string}'.`
-  );
+
+export function getGssp<T extends object = {}>(
+  page: keyof typeof pages
+): GetServerSideProps<T> {
+  return pages[page] as GetServerSideProps<T>;
 }

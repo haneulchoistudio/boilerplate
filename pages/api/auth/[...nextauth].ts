@@ -1,4 +1,4 @@
-import { nextAuthOptions } from "@/m/a/server";
-import NextAuth from "next-auth";
-
-export default NextAuth(nextAuthOptions);
+import { getAuthOptions } from "@/apis/server";
+import NextAuth from "next-auth/next";
+const authOptions = getAuthOptions();
+export default NextAuth(authOptions);

@@ -1,15 +1,14 @@
-.smt {
-  @apply transition-all duration-[0.45s] ease-in-out;
+html,
+body,
+:root {
+  height: 100%;
 }
 
-.fad {
-  @apply lg:hover:opacity-60;
+body {
+  position: relative;
 }
 
-.pic {
-  @apply w-[32.5px] h-[32.5px] rounded-full overflow-hidden lg:w-[37.5px] lg:h-[37.5px];
-}
-
-.wrp {
-  @apply max-w-cutoff mx-auto px-6 lg:px-10 2xl:px-0 py-24 lg:py-28 w-full;
+a,
+button {
+  transition: all 0.35s ease-in-out;
 }
