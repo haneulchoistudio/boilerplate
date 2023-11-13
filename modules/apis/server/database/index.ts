@@ -2,6 +2,7 @@ import { MongoClient, MongoClientOptions } from "mongodb";
 import { getEnv } from "../utils";
 
 const __env__databaseUri = getEnv("DATABASE_URI");
+const __env__databaseName = getEnv("DATABASE_NAME");
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
@@ -26,3 +27,12 @@ if (isDevelopment) {
 }
 
 export default clientPromise;
+
+type Collection = "users" | string;
+
+export async function docs<T extends object = {}>(collectionName: Collection) {
+  const client = await clientPromise;
+  const db = client.db(__env__databaseName);
+  const collection = db.collection<T>(collectionName);
+  return collection;
+}

@@ -1,4 +1,4 @@
-import { ObjectId } from "mongodb";
+import type { ObjectId } from "mongodb";
 
 export type AuthProvider = "google";
 
@@ -10,7 +10,7 @@ export type UserData = {
 };
 
 export type User = {
-  _id?: string | ObjectId;
-  data?: UserData;
-  provider?: AuthProvider;
+  _id: string | ObjectId;
+  data: UserData;
+  provider: AuthProvider;
 };
