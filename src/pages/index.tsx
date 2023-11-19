@@ -1,14 +1,11 @@
 import { Suspense } from "react";
-import { CloudImage } from "~/components/core";
-import {
-  type CloudinaryStaticImage,
-  getCloudinaryStaticImages,
-} from "~/server";
+import { CloudinaryStaticImage } from "~/components/core";
+import { type CloudinaryImage, getCloudinaryImages } from "~/server";
 
 export default function Home({
   staticImages,
 }: {
-  staticImages: CloudinaryStaticImage[];
+  staticImages: CloudinaryImage[];
 }) {
   return (
     <div className="h-screen p-20 flex flex-col gap-y-40">
@@ -18,7 +15,7 @@ export default function Home({
         <Suspense
           fallback={<div className="p-5 border animate-pulse">Loading..</div>}
         >
-          <CloudImage
+          <CloudinaryStaticImage
             priority
             src={"examples/cld-sample-5.jpg"}
             alt={"Shoes"}
@@ -39,7 +36,7 @@ export default function Home({
                 <div className="p-5 border animate-pulse">Loading..</div>
               }
             >
-              <CloudImage
+              <CloudinaryStaticImage
                 priority
                 src={staticImage.src}
                 alt={staticImage.public_id}
@@ -56,7 +53,7 @@ export default function Home({
 }
 
 export const getServerSideProps = async (ctx: any) => {
-  const staticImages = await getCloudinaryStaticImages();
+  const staticImages = await getCloudinaryImages();
 
   return { props: { staticImages } };
 };
