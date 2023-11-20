@@ -1,1 +1,1 @@
-export * from "./coudinary.config";
+export * from "./cloudinary";

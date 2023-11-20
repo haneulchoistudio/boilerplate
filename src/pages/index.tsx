@@ -1,12 +1,8 @@
 import { Suspense } from "react";
-import { CloudinaryStaticImage } from "~/components/core";
-import { type CloudinaryImage, getCloudinaryImages } from "~/server";
+import { StaticImage } from "~/components/core";
+import { type CloudinaryStaticImage, getStaticImages } from "~/server";
 
-export default function Home({
-  staticImages,
-}: {
-  staticImages: CloudinaryImage[];
-}) {
+export default function Home({ images }: { images: CloudinaryStaticImage[] }) {
   return (
     <div className="h-screen p-20 flex flex-col gap-y-40">
       <div>
@@ -15,7 +11,7 @@ export default function Home({
         <Suspense
           fallback={<div className="p-5 border animate-pulse">Loading..</div>}
         >
-          <CloudinaryStaticImage
+          <StaticImage
             priority
             src={"examples/cld-sample-5.jpg"}
             alt={"Shoes"}
@@ -29,17 +25,17 @@ export default function Home({
         <h3>Server</h3>
         <br />
         <ul className="flex flex-col gap-y-40">
-          {staticImages.map((staticImage, idx) => (
+          {images.map((image, idx) => (
             <Suspense
               key={idx}
               fallback={
                 <div className="p-5 border animate-pulse">Loading..</div>
               }
             >
-              <CloudinaryStaticImage
+              <StaticImage
                 priority
-                src={staticImage.src}
-                alt={staticImage.public_id}
+                src={image.src}
+                alt={image.public_id}
                 classNames={{ image: "", picture: "max-w-[500px]" }}
                 width={500}
                 height={500}
@@ -53,7 +49,7 @@ export default function Home({
 }
 
 export const getServerSideProps = async (ctx: any) => {
-  const staticImages = await getCloudinaryImages();
+  const images = await getStaticImages();
 
-  return { props: { staticImages } };
+  return { props: { images } };
 };

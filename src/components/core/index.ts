@@ -1,1 +1,1 @@
-export { default as CloudinaryStaticImage } from "./CloudinaryStaticImage";
+export { default as StaticImage } from "./StaticImage";

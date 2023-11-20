@@ -2,14 +2,14 @@ import { CldImage } from "next-cloudinary";
 import type { ImageProps } from "next/image";
 import { twMerge } from "tailwind-merge";
 
-type CloudinaryStaticImageProps = ImageProps & {
+type StaticImageProps = ImageProps & {
   classNames?: {
     picture?: string;
     image?: string;
   };
 };
 
-const CloudinaryStaticImage: React.FC<CloudinaryStaticImageProps> = ({
+const StaticImage: React.FC<StaticImageProps> = ({
   classNames = { picture: "", image: "" },
   ...props
 }) => {
@@ -26,4 +26,4 @@ const CloudinaryStaticImage: React.FC<CloudinaryStaticImageProps> = ({
   );
 };
 
-export default CloudinaryStaticImage;
+export default StaticImage;
