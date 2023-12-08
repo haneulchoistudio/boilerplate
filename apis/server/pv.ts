@@ -10,7 +10,7 @@ class PVError extends Error {
 }
 
 /** Reads a value corresponding to the key from the local environmental file. */
-export function pv<ProtectedVariableKey extends string>(
+function __pv__<ProtectedVariableKey extends string>(
   key: ProtectedVariableKey
 ) {
   dotenv.config();
@@ -23,3 +23,5 @@ export function pv<ProtectedVariableKey extends string>(
         );
       })();
 }
+
+export { __pv__, PVError };

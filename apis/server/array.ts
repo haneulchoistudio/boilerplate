@@ -1,7 +1,7 @@
 type Compute = (N: number) => boolean;
 type ComputeEquality<K extends string> = Record<K, Compute>;
 
-function len<T = unknown>(a: Array<T>) {
+function __length__<T = unknown>(a: Array<T>) {
   const length = a.length;
   const lenFunctions = {
     eq: (N: number) => {
@@ -24,4 +24,4 @@ function len<T = unknown>(a: Array<T>) {
   return lenFunctions as ComputeEquality<keyof typeof lenFunctions>;
 }
 
-export { len };
+export { __length__ };

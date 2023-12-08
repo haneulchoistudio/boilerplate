@@ -1,14 +1,10 @@
 // Use this on nodejs runtime.
 
 import { Collection, MongoClient } from "mongodb";
-import { pv } from "./pv";
-import type {
-  ExampleDatabaseNames,
-  ExampleEvent,
-  ExampleUser,
-} from "~/types";
+import { __pv__ } from "./pv";
+import type { ExampleDatabaseNames, ExampleEvent, ExampleUser } from "~/types";
 
-const uri = pv("DATABASE_URI");
+const uri = __pv__("DATABASE_URI");
 
 if (!uri) {
   throw new Error("Please add your Mongo URI to .env.local");
@@ -45,7 +41,7 @@ export default clientPromise;
 
 async function __getMongoDB__() {
   const promise = await clientPromise;
-  const db = promise.db(pv("DATABASE_NAME"));
+  const db = promise.db(__pv__("DATABASE_NAME"));
   return db;
 }
 async function __getMongoCollection__<Type extends object>(name: string) {
@@ -71,4 +67,3 @@ async function docs<Name extends ExampleDatabaseNames>(name: Name) {
 }
 
 export { docs };
-
