@@ -1,12 +1,12 @@
 // Use this on nodejs runtime.
 
 import { Collection, MongoClient } from "mongodb";
-import { pv } from "../index";
+import { pv } from "./pv";
 import type {
   ExampleDatabaseNames,
   ExampleEvent,
   ExampleUser,
-} from "../types";
+} from "~/types";
 
 const uri = pv("DATABASE_URI");
 
@@ -71,3 +71,4 @@ async function docs<Name extends ExampleDatabaseNames>(name: Name) {
 }
 
 export { docs };
+
